@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar>
+	  <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding="true">
+<ion-searchbar [(ngModel)]="searchQuery" (search)="searchChurch()" placeholder="Find Churches"></ion-searchbar>
+
+<ion-item tappable>
+<ion-list *ngFor="let index of tempData">
+	<ion-item (click)='giveNow(index.id, index.name)'>
+	<h1>{{index.name}}</h1>
+		<p>
+			{{index.address}},
+      <br>
+			{{index.city}},
+      {{index.state}},
+      {{index.country}}
+		</p>
+	</ion-item>
+</ion-list>
+</ion-item>
+
+<ion-item text-center tappable (click)='giveNowNearest()'>
+<div class="list card">
+  <div class="item item-avatar">
+	<ion-icon name="home"></ion-icon>
+    <h1>{{nearestChurchName}}</h1>
+    <p>{{nearestChurchAddress}}</p>
+  </div>
+</div>
+</ion-item>
+
+<div class="wrapper">
+	<button ion-button round icon-left (click)='nearestChurch()' >
+		<ion-icon name="locate" ></ion-icon>Nearest Church
+	</button>
+</div>
+	<!--<button ion-button round icon-right (click)='giveNowButton()' >Give Now
+		<ion-icon name="locate"></ion-icon>
+	</button> -->
+</ion-content>

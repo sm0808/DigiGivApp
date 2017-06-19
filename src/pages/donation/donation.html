@@ -1,0 +1,85 @@
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Donation Form
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list no>
+    <ion-item [hidden]="checkChurch!=1">
+      <ion-label>Church</ion-label>
+      <ion-select required [(ngModel)]="selectChurch" name="selectChurch" required>
+        <ion-option value="{{churchID}}">{{churchName}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item [hidden]="checkChurch!=2">
+      <ion-label>Select Church</ion-label>
+      <ion-select required [(ngModel)]="selectChurch" name="selectChurch">
+        <ion-option *ngFor="let index of tempChurches" value="{{index.id}}" (ionSelect)="getCampaigns(index.id)">{{index.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Select Campaigns</ion-label>
+        <ion-select required [(ngModel)]="selectCampaign">
+          <ion-option *ngFor="let key of tempCampaigns" value="{{key.id}}">{{key.name}}</ion-option>
+        </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Amount </ion-label>
+      <ion-input type="number" required [(ngModel)]="amount"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Frequency</ion-label>
+      <ion-select [(ngModel)]="Frequency" interface="action-sheet">
+        <ion-option value="0">OneTimeFuture</ion-option>
+				<ion-option value="1">Daily</ion-option>
+				<ion-option value="2">Weekly</ion-option>
+				<ion-option value="4">Monthly</ion-option>
+				<ion-option value="8">Yearly</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item [hidden]="Frequency == 0">
+      <ion-label>End Status</ion-label>
+      <ion-select [(ngModel)]="endStatus" interface="action-sheet">
+          <ion-option value="0">Keep Going</ion-option>
+    			<ion-option value="1">End After</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item [hidden]="Frequency == 0 || endStatus != 1">
+      <ion-label>Cycles </ion-label>
+      <ion-input type="number" required [(ngModel)]="cycles"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed>Start Date </ion-label>
+      <ion-datetime class="customDate" displayFormat="YYYY-MM-DD" pickerFormat="YYYY MMMM DD" [(ngModel)]="startDate" min="{{startDate}}" max="{{FutureDate}}" (click)="stpSelect()"></ion-datetime>
+      <!--<ion-input type="date" required [(ngModel)]="startDate"></ion-input> -->
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Select Card</ion-label>
+        <ion-select required [(ngModel)]="selectCard">
+          <ion-option *ngFor="let key of tempBank" value="{{key.paymentaccountid}}" (ionSelect)="stpSelect(key.paymentaccountid)">{{key.maskednumber}}</ion-option>
+        </ion-select>
+    </ion-item>
+
+    <div class="wrapper">
+      <button ion-button round icon-left (click)='giveDonation()'>
+        <ion-icon name="cash"></ion-icon>Donate
+      </button>
+    </div>
+
+  </ion-list>
+</ion-content>

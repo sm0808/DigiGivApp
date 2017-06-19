@@ -1,0 +1,41 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+
+<ion-content class="background">
+	<ion-card>
+		<ion-card-header>
+			Login Form
+		</ion-card-header>
+		<ion-card-content>
+			<ion-list no-line>
+
+
+				<ion-item class="input-item">
+			    	<ion-label class="input-label" floating>Email</ion-label>
+					<ion-input class="input-Field" type="email" [(ngModel)]="emailInput"></ion-input>
+				</ion-item>
+
+				<ion-item class="input-item">
+					<ion-label class="input-label" floating>Password</ion-label>
+					<ion-input class="input-Field" type="password" [(ngModel)]="passwordInput"></ion-input>
+				</ion-item>
+
+				<a>Forgot your login detail? <b>Get help signing in</b></a>
+				<button ion-button block outline color="light" (click)='login()'>Log in</button>
+				<p>OR</p>
+				<button ion-button block color="facebook">
+					<ion-icon name="logo-facebook"></ion-icon> Login with facebook
+				</button>
+			</ion-list>
+		</ion-card-content>
+	</ion-card>
+	<button class="bottom" ion-button  color="dark">Don't have an account? Sign up</button>
+</ion-content>

@@ -1,0 +1,51 @@
+<ion-header class="bar bar-stable">
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>My Account</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+<ion-list>
+  <ion-item>
+    <ion-label>Change Email</ion-label>
+    <ion-toggle [(ngModel)]="val1" (ionChange)="onChangeEmail(val1)"></ion-toggle>
+  </ion-item>
+
+	<ion-item [hidden]="!value">
+		<ion-label floating>Current Email</ion-label>
+		<ion-input type="email" [(ngModel)]="cEmailInput"></ion-input>
+	</ion-item>
+	<ion-item [hidden]="!value">
+		<ion-label floating>Password</ion-label>
+		<ion-input type="password" [(ngModel)]="passwordInput"></ion-input>
+	</ion-item>
+	<ion-item [hidden]="!value">
+		<ion-label floating>New Email</ion-label>
+		<ion-input type="email" [(ngModel)]="nEmailInput"></ion-input>
+	</ion-item>
+
+   <ion-item>
+    <ion-label>Change Password</ion-label>
+    <ion-toggle [(ngModel)]="val2" (ionChange)="onChangePassword(val2)"></ion-toggle>
+  </ion-item>
+
+	<ion-item [hidden]="!valuepass">
+		<ion-label floating>Current Password</ion-label>
+		<ion-input type="password" [(ngModel)]="cPasswordInput"></ion-input>
+	</ion-item>
+	<ion-item [hidden]="!valuepass">
+		<ion-label floating>New Password</ion-label>
+		<ion-input type="password" [(ngModel)]="nPasswordInput"></ion-input>
+	</ion-item>
+  <div class="wrapper">
+    <button ion-button round icon-left (click)='submitData()'>
+      <ion-icon name="checkmark" ></ion-icon>Submit
+    </button>
+  </div>
+</ion-list>
+</ion-content>
